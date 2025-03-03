@@ -2,9 +2,9 @@
 /// Первая программа
 
 
-#include <iostrean>
+#include <iostream>
 
 int main () {
-	std::count << "Здравствуй, мир!" << std::endl
+	std::cout << "Здравствуй, мир!" << std::endl;
 	return 0;
 }
