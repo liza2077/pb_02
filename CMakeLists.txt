@@ -1,15 +1,11 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(ch02 LANGUAGES CXX)
+project(ch03 LANGUAGES CXX)
 
-add_executable(greet
-    greet.cpp
+add_executable(avg
+    avg.cpp
 )
 
-add_executable(frame
-    frame.cpp
-)
-
-add_executable(padd
-    padd.cpp
+add_executable(med
+    med.cpp
 )
