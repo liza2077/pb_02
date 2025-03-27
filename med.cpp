@@ -9,7 +9,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::setprecision;
-using std::sort
+using std::sort;
 using std::streamsize;
 using std::string;
 using std::vector;
@@ -18,17 +18,17 @@ int main () {
 	// Запрашиваем имя студента и выводим приветствие
 	cout << "Пожалуйста, введите ваше имя: ";
 	string name;
-	cin >> name
+	cin >> name;
 	cout << "Здравствуй, " << name << "!" << endl;
 
 	cout << "Введите ваши оценки за контрольную работу и экзамен: ";
-	double midterm, final;
-	cin >> midterm >> final;
+	double midterm, finalExam;
+	cin >> midterm >> finalExam;
 
 	cout << "Введите оценки за самостоятельные работы, "
 	        "завершив ввод признаком EOF (end of file), сочетание клавиш Ctrl-D : ";
 
-	vector<double> hamework;  // Динамический массив (вектор) для оценок за СР
+	vector<double> homework;  // Динамический массив (вектор) для оценок за СР
 	double x;
 	while (cin >> x)
 		homework.push_back(x);
@@ -43,18 +43,18 @@ int main () {
 	}
 
 	// Сортируем оценки за СР
-	sort(homework.begin() homework.end());
+	sort(homework.begin(), homework.end());
 
 	// Вычисляем медиану оценок за СР
 	vec_sz mid = size/2;
 	double median;
 	median = size % 2 == 0 ? (homework[mid] + homework[mid-1]) / 2
-	                       : homework(mid);
+	                       : homework[mid];
 
 	// Выводим результат, вычисляя его прямо в процессе вывода
 	streamsize prec = cout.precision();
 	cout << name << ", ваша итоговая оценка: " << setprecision(3)
-	     << 0.3 * midterm + 0.4 * final + 0.4 * median
+	     << 0.2 * midterm + 0.4 * finalExam + 0.4 * median
 	     << setprecision(prec) << endl;
 
 	return 0;
