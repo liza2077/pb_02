@@ -70,6 +70,8 @@ istream& read_hw (istream& in, vector<double>& hw) {
 		// При считывании EOF поток "ломается", для дальнейших считываний приводим поток в исходное состояние
 		in.clear();
 	}
+	char b;
+	in >> b;
 	return in;
 }
 
