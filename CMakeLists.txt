@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(ch03 LANGUAGES CXX)
+project(ch05 LANGUAGES CXX)
 
-add_executable(func
-    func.cpp
+add_executable(mod
+    mod.cpp
 )
 
-add_executable(struc
-    struc.cpp
-)
+add_subdirectory(tests)
