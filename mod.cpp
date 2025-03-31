@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include "Student_info.h"
+#include "Grade.h"
 
 using std::max;
 
@@ -14,97 +16,26 @@ using std::endl;
 using std::istream;
 using std::ostream;
 using std::setprecision;
-using std::setw;
 using std::sort;
 using std::streamsize;
 using std::string;
 using std::vector;
 
-
-struct Student_info {
-	string name;
-	double midterm;
-	double final;
-	vector<double> homework;
-};
-
-
-//==============================================================================
-double median (vector<double> vec) {
-	size_t size = vec.size();
-	if (size == 0) throw domain_error("Вектор пуст! Вычисление медианы невозможно.");
-
-	sort(vec.begin(), vec.end());
-	size_t mid = size / 2;
-
-	return size % 2 == 0 ? (vec[mid] + vec[mid-1]) / 2 : vec[mid];
-}
-
-
-//==============================================================================
-double grade (double midterm, double final, double homework) {
-	return (0.2 * midterm + 0.4 * final + 0.4 * homework);
-}
-
-
-//==============================================================================
-double grade (double midterm, double final, const vector<double>& hw) {
-	if (hw.size() == 0) throw domain_error("Отсутствуют оценки за самостоятельные работы!");
-
-	return grade(midterm, final, median(hw));
-}
-
-
-//==============================================================================
-double grade (const Student_info& s) {
-	return grade(s.midterm, s.final, s.homework);
-}
-
-
-//==============================================================================
-istream& read_hw (istream& in, vector<double>& hw) {
-	if (in) {
-		hw.clear();
-		
-		for (double x; in >> x;) hw.push_back(x);
-
-		in.clear();
-	}
-	return in;
-}
-
-
-//==============================================================================
-istream& read (istream& is, Student_info& s) {
-	is >> s.name >> s.midterm >> s.final;
-	read_hw(is, s.homework);
-
-	return is;
-}
-
-
-//==============================================================================
-bool compare (const Student_info& x, const Student_info& y) {
-	return x.name < y.name;
-}
-
-
-//==============================================================================
 int main () {
-	vector<Student_info> students;
+	vector<studentInfo> students;
 	string::size_type maxlen = 0;
-
-	for (Student_info record; read(cin, record);) {
-		maxlen = max(maxlen, record.name.size());
+	for (studentInfo record; read(cin, record);) {
+		maxlen = max(maxlen, record.name.size() / 2);
 		students.push_back(record);
 	}
 
 	sort(students.begin(), students.end(), compare);
 
-	for (vector<Student_info>::size_type i = 0; i != students.size(); ++i) {
+
+	for (vector<studentInfo>::size_type i = 0; i != students.size(); ++i) {
 
 		cout << students[i].name
-		     << string(maxlen + 1 - students[i].name.size(), ' ');
+		<< string(maxlen + 4 - students[i].name.size() / 2, '.');
 
 		try {
 			double final_grade = grade(students[i]);
@@ -114,9 +45,7 @@ int main () {
 		catch (domain_error e) {
 			cout << e.what();
 		}
-
 		cout << endl;
 	}
-
 	return 0;
 }
